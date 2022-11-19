@@ -4,15 +4,21 @@ import { addHours  } from 'date-fns'; // funcionalidad del calendario
 const tempEvent = {
 
     _id: new Date().getTime(),
-    title: 'cumpleaños del jefe',
-    notes: 'hay que comprar el pastel',
-    start: new Date(),
-    end: addHours( new Date(), 2 ),
+    // title: 'cumpleaños del jefe',
+    titulo: 'cumpleaños del jefe',
+    // notes: 'hay que comprar el pastel',
+    notas: 'hay que comprar el pastel',
+    // start: new Date(),
+    inicio: new Date(),
+    // end: addHours( new Date(), 2 ),
+    fin: addHours( new Date(), 2 ),
     bgColor: '#fafafa',
-    user: {
+    // user: {
+    usuario: {
   
       _id: '123',
-      name: 'Alexander'
+    //   name: 'Alexander'
+      nombre: 'Alexander'
     }
 
 };

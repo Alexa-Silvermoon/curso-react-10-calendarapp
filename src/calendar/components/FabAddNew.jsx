@@ -7,22 +7,27 @@ export const FabAddNew = () => { // usado en CalendarPage.jsx
     const { openDateModal } = useUiStore();
     const { setActiveEvent } = useCalendarStore();
 
-    const handleClickEvent = () => {
+    const handleClickNew  = () => {
 
         setActiveEvent({
 
             // _id: new Date().getTime(),
             // title: 'Hola',
-            title: '',
+            // title: '',
+            titulo: '',
             // notes: 'reymundo',
-            notes: '',
-            start: new Date(),
-            end: addHours( new Date(), 2 ),
+            // notes: '',
+            notas: '',
+            // start: new Date(),
+            inicio: new Date(),
+            // end: addHours( new Date(), 2 ),
+            fin: addHours( new Date(), 2 ),
             bgColor: '#fafafa',
-            user: {
+            // user: {
+            usuario: {
         
                 _id: '123',
-                name: 'Alexander'
+                nombre: 'Alexander'
             }
         });
 
@@ -33,7 +38,7 @@ export const FabAddNew = () => { // usado en CalendarPage.jsx
 
         <button
             className="btn btn-primary fab"
-            onClick={ handleClickEvent }
+            onClick={ handleClickNew }
         >
 
             <i className="fas fa-plus"></i> {/* simbolo + */}

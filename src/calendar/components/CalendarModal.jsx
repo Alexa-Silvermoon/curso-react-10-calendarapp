@@ -1,8 +1,11 @@
 import { useMemo, useState, useEffect } from 'react';
 import { addHours, differenceInSeconds } from 'date-fns';
+
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
+
 import Modal from 'react-modal';
+
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // estilo del DatePicker
 
@@ -43,10 +46,14 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
 
   const [formValues, setFormValues] = useState({
 
-    title: 'Alexander',
-    notes: 'Martinez',
-    start: new Date(),
-    end: addHours( new Date(), 2 ) // es decir la fecha de inicio + 2 horas de duracion
+    // title: '',
+    titulo: '',
+    // notes: '',
+    notas: '',
+    // start: new Date(),
+    inicio: new Date(),
+    // end: addHours( new Date(), 2 ) // es decir la fecha de inicio + 2 horas de duracion
+    fin: addHours( new Date(), 2 ) // es decir la fecha de inicio + 2 horas de duracion
 
   });
 
@@ -55,7 +62,8 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
     if ( !formSubmitted ) return ''; // si formSubmitted NO se ha disparado para postearse, regresar un string vacio en clase
     // className={ `form-control ${ titleClass }` }
 
-    return( formValues.title.length > 0 ) ? // si formulario ya se disparo pero longitud de titulo...
+    // return( formValues.title.length > 0 ) ? // si formulario ya se disparo pero longitud de titulo...
+    return( formValues.titulo.length > 0 ) ? // si formulario ya se disparo pero longitud de titulo...
           // 'is-valid' // si es mayor a 0, se pone en verde el input
           '' // si es mayor a 0, lo deje vacio para que no muestre el verde
           :
@@ -77,7 +85,8 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
     setFormValues({
 
       ...formValues,
-      [ target.name ]: target.value
+      // [ target.name ]: target.value
+      [ target.nombre ]: target.value
 
     })
 
@@ -106,7 +115,8 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
     event.preventDefault(); // prevenir refrescar el navegador al dar click en boton guardar
     setFormSubmitted( true ); // el formulario se intento postear
 
-    const difference = differenceInSeconds( formValues.end, formValues.start ); // saber cual es la diferencia en segundos entre fechas
+    // const difference = differenceInSeconds( formValues.end, formValues.start ); // saber cual es la diferencia en segundos entre fechas
+    const difference = differenceInSeconds( formValues.fin, formValues.inicio ); // saber cual es la diferencia en segundos entre fechas
     console.log( { difference } ); 
     // si resultado es NaN, significa que se borro alguno de los input, por ende tampoco es permitido
 
@@ -120,7 +130,8 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
 
     }
 
-    if ( formValues.title.length <= 0 ) return;
+    // if ( formValues.title.length <= 0 ) return;
+    if ( formValues.titulo.length <= 0 ) return;
     console.log( formValues );
 
     //TODO: remover errores en pantalla, cerrar modal
@@ -152,8 +163,10 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
                   <label>Fecha y hora inicio</label>
                   {/* <input className="form-control" placeholder="Fecha inicio" /> */}
                   <DatePicker
-                    selected={ formValues.start }
-                    onChange={ ( event ) => onDateChanged( event, 'start' ) }
+                    // selected={ formValues.start }
+                    selected={ formValues.inicio }
+                    // onChange={ ( event ) => onDateChanged( event, 'start' ) }
+                    onChange={ ( event ) => onDateChanged( event, 'inicio' ) }
                     className="form-control" /* estira el input de DatePicker */
                     dateFormat="Pp" /* muestra la hora, minutos y AM o PMs */
                     showTimeSelect /* permite modificar la hora */
@@ -166,9 +179,12 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
                   <label>Fecha y hora fin</label>
                   {/* <input className="form-control" placeholder="Fecha inicio" /> */}
                   <DatePicker
-                    minDate={ formValues.start } /* no permite seleccionar una fecha anterior a la del inicio */
-                    selected={ formValues.end }
-                    onChange={ ( event ) => onDateChanged( event, 'end' ) }
+                    // minDate={ formValues.start } /* no permite seleccionar una fecha anterior a la del inicio */
+                    minDate={ formValues.inicio } /* no permite seleccionar una fecha anterior a la del inicio */
+                    // selected={ formValues.end }
+                    selected={ formValues.fin }
+                    // onChange={ ( event ) => onDateChanged( event, 'end' ) }
+                    onChange={ ( event ) => onDateChanged( event, 'fin' ) }
                     className="form-control" /* estira el input de DatePicker */
                     dateFormat="Pp" /* muestra la hora, minutos y AM o PMs */
                     showTimeSelect /* permite modificar la hora */
@@ -184,9 +200,11 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
                       type="text" 
                       className={ `form-control ${ titleClass }` }
                       placeholder="Título del evento"
-                      name="title"
+                      // name="title"
+                      name="titulo"
                       autoComplete="off"
-                      value={ formValues.title }
+                      // value={ formValues.title }
+                      value={ formValues.titulo }
                       onChange={ onInputChanged }
                   />
                   <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
@@ -198,8 +216,10 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
                       className="form-control"
                       placeholder="Notas"
                       rows="5"
-                      name="notes"
-                      value={ formValues.notes }
+                      // name="notes"
+                      name="notas"
+                      // value={ formValues.notes }
+                      value={ formValues.notas }
                       onChange={ onInputChanged }
                   ></textarea>
                   <small id="emailHelp" className="form-text text-muted">Información adicional</small>

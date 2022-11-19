@@ -6,7 +6,7 @@ import { addHours  } from 'date-fns'; // funcionalidad del calendario
 
 import { Navbar, CalendarEvent, CalendarModal, FabAddNew, FabDelte } from "../";
 import { localizer, getMessagesES } from '../../helpers';
-import { useUiStore, useCalendarStore } from '../../hooks';
+import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks';
 
 /* const events = [{
 
@@ -15,7 +15,7 @@ import { useUiStore, useCalendarStore } from '../../hooks';
   start: new Date(),
   end: addHours( new Date(), 2 ),
   bgColor: '#fafafa',
-  user: {
+  usuario: {
 
     _id: '123',
     name: 'Alexander'
@@ -26,6 +26,8 @@ import { useUiStore, useCalendarStore } from '../../hooks';
 
 export const CalendarPage = () => { // usado en AppRouter.jsx
 
+  const { usuario } = useAuthStore();
+
   const { openDateModal } = useUiStore();
 
   const { events, setActiveEvent } = useCalendarStore();
@@ -35,11 +37,14 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
 
   const eventStyleGetter = ( event, start, end, isSelected ) => {
 
+    const isMyEvent = ( usuario.uid === event.usuario._id ) || ( usuario.uid === event.usuario.uid );
+
     // console.log( { event, start, end, isSelected } );
 
     const style = { // estilo del evento cumpleaños del jefe
 
-      backgroundColor: '#347CF7',
+      // backgroundColor: '#347CF7',
+      backgroundColor: isMyEvent ? '#347CF7' : '#465660',
       borderRadiud: '0px',
       opacity: 0.8,
       color: 'white'
@@ -62,7 +67,7 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
 
   const onSelect = ( event ) => {
 
-    console.log( { click: event } );
+    // console.log( { click: event } );
 
     setActiveEvent( event );
 
@@ -86,8 +91,10 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
         localizer={localizer}
         events={events}
         defaultView={ lastView } /* cada vez que refresco en navegador, se abre en la ultima vista seleccionada, sino por defecto queda en week */
-        startAccessor="start"
-        endAccessor="end"
+        // startAccessor="start"
+        startAccessor="inicio"
+        // endAccessor="end"
+        endAccessor="fin"
         // style={{ height: 500 }}
         style={{ height: 'calc( 100vh - 80px' }} /* vh view high */
         messages={ getMessagesES() } /* poner en español el resto de la app */

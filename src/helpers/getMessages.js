@@ -4,6 +4,7 @@ export const getMessagesES = () => { // usado en CalendarPage.jsx
     return {
 
         allDay: 'Todo el día',
+        title: 'Titulo',
         previous: '<',
         next: '>',
         today: 'Hoy',

@@ -21,6 +21,12 @@ export const useUiStore = () => { // usado en CalendarModal.jsx, CalendarPage.js
 
     }
 
+    const toggleDateModal = () => {
+        (isDateModalOpen)
+            ? openDateModal()
+            : closeDateModal();
+    }
+
     /* const toggleDateModal = () => {
 
         ( isDateModalOpen )?
@@ -34,7 +40,7 @@ export const useUiStore = () => { // usado en CalendarModal.jsx, CalendarPage.js
         isDateModalOpen, // propiedad
         openDateModal, // metodo
         closeDateModal, // metodo
-        // toggleDateModal
+        toggleDateModal
     }
 }
 

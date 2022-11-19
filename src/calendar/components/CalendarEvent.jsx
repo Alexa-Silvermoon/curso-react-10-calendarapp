@@ -4,16 +4,19 @@ export const CalendarEvent = ( { event } ) => { // usado en CalendarPage.jsx
 
     // es el cuadrito de cada dia donde aparecen los detalles si hay un evento
 
-    const { title, user } = event;
+    // const { title, user } = event;
+    const { titulo, usuario } = event;
 
     // console.log( props );
-    console.log( {title, user} );
+    // console.log( {title, user} );
 
     return (
 
         <>
-            <strong>{ title }</strong>
-            <span> - { user.name }</span>
+            {/* <strong>{ title }</strong> */}
+            <strong>{ titulo }</strong>
+            {/* <span> - { user.name }</span> */}
+            <span> - { usuario.nombre }</span>
         
         </>
     )
