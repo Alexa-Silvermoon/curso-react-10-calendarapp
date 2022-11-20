@@ -1,19 +1,21 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { uiSlice, calendarSlice, authSlice } from "./";
+import { configureStore } from '@reduxjs/toolkit';
+import { uiSlice, calendarSlice, authSlice } from './';
 
 export const store = configureStore({ // usado en CalendarApp.jsx
 
-    reducer:{
+    reducer: {
 
-        auth: authSlice.reducer,
+        auth:     authSlice.reducer,
         calendar: calendarSlice.reducer,
-        ui: uiSlice.reducer
+        ui:       uiSlice.reducer
+
     },
-    middleware: ( getDefaultMiddleware ) => getDefaultMiddleware( { // corrige error de fechas no seriealizables
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ // corrige error de fechas no seriealizables
 
         serializableCheck: false
 
     })
+    
 });
 
 // instalacion y configuracion de reduc: https://www.udemy.com/course/react-cero-experto/learn/lecture/20348599#questions

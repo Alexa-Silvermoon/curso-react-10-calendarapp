@@ -41,8 +41,7 @@
 
 /* FABS */
 /* boton azul agregar evento */
-.fab{
-
+.fab {
   border-radius: 100%;
   bottom: 25px;
   font-size: 30px;
@@ -52,12 +51,10 @@
 }
 
 /* boton rojo eliminar evento */
-.fab-danger{
-
+.fab-danger {
   border-radius: 100%;
   bottom: 25px;
   font-size: 22px;
-  /* padding: 25px; */
   position: fixed;
   left: 25px;
   width: 70px;

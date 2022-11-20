@@ -1,51 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Calendar } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css'; // apariencia del calendario
 
-import { addHours  } from 'date-fns'; // funcionalidad del calendario
+import { Navbar, CalendarEvent, CalendarModal, FabAddNew, FabDelete} from '../';
 
-import { Navbar, CalendarEvent, CalendarModal, FabAddNew, FabDelte } from "../";
 import { localizer, getMessagesES } from '../../helpers';
 import { useUiStore, useCalendarStore, useAuthStore } from '../../hooks';
 
-/* const events = [{
-
-  title: 'cumpleaños del jefe',
-  notes: 'hay que comprar el pastel',
-  start: new Date(),
-  end: addHours( new Date(), 2 ),
-  bgColor: '#fafafa',
-  usuario: {
-
-    _id: '123',
-    name: 'Alexander'
-  }
-
-}] 
-*/
-
 export const CalendarPage = () => { // usado en AppRouter.jsx
 
-  const { usuario } = useAuthStore();
-
+  const { user } = useAuthStore();
   const { openDateModal } = useUiStore();
-
-  const { events, setActiveEvent } = useCalendarStore();
+  const { events, setActiveEvent, startLoadingEvents } = useCalendarStore();
 
   // de no existir una ultima vista guardada, poner por defecto la vista de week
-  const [lastView, setLastView] = useState( localStorage.getItem( 'lastView' || 'week' ) );
+  const [ lastView, setLastView ] = useState(localStorage.getItem('lastView') || 'week' );
 
   const eventStyleGetter = ( event, start, end, isSelected ) => {
 
-    const isMyEvent = ( usuario.uid === event.usuario._id ) || ( usuario.uid === event.usuario.uid );
+    const isMyEvent = ( user.uid === event.user._id ) || ( user.uid === event.user.uid );
+    // console.log( { event, start, end, isSelected } )
 
-    // console.log( { event, start, end, isSelected } );
+    const style = { // estilo del evento
 
-    const style = { // estilo del evento cumpleaños del jefe
-
-      // backgroundColor: '#347CF7',
       backgroundColor: isMyEvent ? '#347CF7' : '#465660',
-      borderRadiud: '0px',
+      borderRadius: '0px',
       opacity: 0.8,
       color: 'white'
 
@@ -54,21 +33,21 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
     return {
 
       style
+
     }
 
   }
 
   const onDoubleClick = ( event ) => {
 
-    console.log( { doubleClick: event } );
+    // console.log({ doubleClick: event });
     openDateModal();
 
   }
 
   const onSelect = ( event ) => {
 
-    // console.log( { click: event } );
-
+    // console.log({ click: event });
     setActiveEvent( event );
 
   }
@@ -76,31 +55,33 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
   const onViewChanged = ( event ) => {
 
     // console.log( { viewChanged: event } );
-    localStorage.setItem( 'lastView', event ); // guarda la ultima vista que se tuvo, toma el event y lo guarda como lastView
-    setLastView( event ); // cargar el ultimo view guardado
+
+    localStorage.setItem('lastView', event ); // guarda la ultima vista que se tuvo, toma el event y lo guarda como lastView
+    setLastView( event ) // cargar el ultimo view guardado
 
   }
 
-  return (
+  useEffect(() => {
 
+    startLoadingEvents()
+
+  }, [])
+  
+  return (
     <>
-      <Navbar/>
+      <Navbar />
 
       <Calendar
         culture='es' /* poner en español mes año */
-        localizer={localizer}
-        events={events}
+        localizer={ localizer }
+        events={ events }
         defaultView={ lastView } /* cada vez que refresco en navegador, se abre en la ultima vista seleccionada, sino por defecto queda en week */
-        // startAccessor="start"
-        startAccessor="inicio"
-        // endAccessor="end"
-        endAccessor="fin"
-        // style={{ height: 500 }}
-        style={{ height: 'calc( 100vh - 80px' }} /* vh view high */
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 'calc( 100vh - 80px )' }}
         messages={ getMessagesES() } /* poner en español el resto de la app */
         eventPropGetter={ eventStyleGetter }
         components={{
-
           event: CalendarEvent // es el cuadrito de cada dia donde aparecen los detalles si hay un evento
         }}
 
@@ -108,12 +89,12 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
         onDoubleClickEvent={ onDoubleClick }
         onSelectEvent={ onSelect }
         onView={ onViewChanged }
-
       />
 
-      <CalendarModal/> {/* cuadro de nuevo evento */}
-      <FabAddNew/> {/* boton azul para agregar nuevo evento */}
-      <FabDelte/>
+      <CalendarModal /> {/* cuadro de nuevo evento */}
+      
+      <FabAddNew /> {/* boton azul para agregar nuevo evento */}
+      <FabDelete />
 
     </>
   )

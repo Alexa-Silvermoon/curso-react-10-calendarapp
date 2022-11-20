@@ -5,10 +5,9 @@ export const authSlice = createSlice({ // usado en store.js
     name: 'auth',
 
     initialState: {
+        status: 'checking', // 'authenticated','not-authenticated',
 
-        status: 'checking', // 'authenticated', 'not-authenticated'
-        // user: {},
-        usuario: {},
+        user: {},
         errorMessage: undefined,
 
     },
@@ -17,30 +16,28 @@ export const authSlice = createSlice({ // usado en store.js
         onChecking: ( state ) => { // usado en useAuthStore.js
 
             state.status = 'checking';
-            // state.user = {};
-            state.usuario = {};
-            state.errorMessage = undefined
+            state.user   = {};
+            state.errorMessage = undefined;
 
         },
         onLogin: ( state, { payload } ) => { // usado en useAuthStore.js
 
             state.status = 'authenticated';
-            // state.user = payload;
-            state.usuario = payload;
-            state.errorMessage = undefined
+            state.user = payload;
+            state.errorMessage = undefined;
 
         },
         onLogout: ( state, { payload } ) => { // usado en useAuthStore.js
 
             state.status = 'not-authenticated';
-            // state.user = {};
-            state.usuario = {};
-            state.errorMessage = payload
+            state.user   = {};
+            state.errorMessage = payload;
 
         },
         clearErrorMessage: ( state ) => { // usado en useAuthStore.js
 
             state.errorMessage = undefined;
+
         }
 
     }
@@ -57,4 +54,3 @@ export const { onChecking, onLogin, onLogout, clearErrorMessage } = authSlice.ac
 
 // creacion de un usuario nuevo desde el frontend hacia el backend:
 // https://www.udemy.com/course/react-cero-experto/learn/lecture/20420505#questions
-

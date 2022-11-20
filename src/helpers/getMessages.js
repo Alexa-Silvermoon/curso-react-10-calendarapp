@@ -1,10 +1,11 @@
+
 export const getMessagesES = () => { // usado en CalendarPage.jsx
 
     /* poner en español el resto de la app */
+
     return {
 
         allDay: 'Todo el día',
-        title: 'Titulo',
         previous: '<',
         next: '>',
         today: 'Hoy',
@@ -18,7 +19,8 @@ export const getMessagesES = () => { // usado en CalendarPage.jsx
         noEventsInRange: 'No hay eventos en este rango',
         showMore: total => `+ Ver más (${total})`
 
-    }
+    };
+
 }
 
 // Configuraciones adicionales al calendario https://www.udemy.com/course/react-cero-experto/learn/lecture/20344297#questions

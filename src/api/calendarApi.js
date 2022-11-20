@@ -1,15 +1,16 @@
 import axios from 'axios';
 import { getEnvVariables } from '../helpers';
 
-const { VITE_API_URL } = getEnvVariables();
+const { VITE_API_URL } = getEnvVariables()
 
-const calendarAPI = axios.create({ // usado en useAuthStore.js
+const calendarApi = axios.create({ // usado en useAuthStore.js
 
     baseURL: VITE_API_URL
+
 });
 
-//TODO: configurar interceptores
-calendarAPI.interceptors.request.use( config => {
+// Todo: configurar interceptores
+calendarApi.interceptors.request.use( config => {
 
     // interceptar la ruta y los Headers y el x-token en localhost:4000/api/auth/renew
     config.headers = {
@@ -27,6 +28,6 @@ calendarAPI.interceptors.request.use( config => {
 
 })
 
-export default calendarAPI;
+export default calendarApi;
 
 // AXIOS configurar cliente para peticions http: https://www.udemy.com/course/react-cero-experto/learn/lecture/32533774?start=15#questions

@@ -1,32 +1,36 @@
-import { useCalendarStore, useUiStore } from "../../hooks"
+import { useCalendarStore, useUiStore } from '../../hooks';
 
 // boton rojo para borrar un evento
-export const FabDelte = () => { // usado en CalendarPage.jsx
+export const FabDelete = () => { // usado en CalendarPage.jsx
 
     const { startDeletingEvent, hasEventSelected } = useCalendarStore();
 
-    const handleDelte = () => {
+    const handleDelete = () => {
 
         startDeletingEvent();
 
     }
 
-    return(
+  return (
 
-        <button
-            className="btn btn-danger fab-danger"
-            onClick={ handleDelte }
-            style={{
+    <button
 
-                display: hasEventSelected ? '' : 'none' // boton esta desaparecido mientras no haya un evento seleccionado con click
+        className="btn btn-danger fab-danger"
+        onClick={ handleDelete }
 
-            }}
-        >
+        style={{
 
-            <i className="fas fa-trash-alt"></i> {/* simbolo de basurita */}
+            display: hasEventSelected ? '': 'none' // boton esta desaparecido mientras no haya un evento seleccionado con click
 
-        </button>
-    )
+        }}
+
+    >
+
+        <i className="fas fa-trash-alt"></i> {/* simbolo de basurita */}
+
+    </button>
+
+  )
 }
 
 // preparando la creacion de un nuevo evento: https://www.udemy.com/course/react-cero-experto/learn/lecture/32499238#questions
