@@ -1,6 +1,7 @@
+
 import { createSlice } from '@reduxjs/toolkit';
 
-export const uiSlice = createSlice({ // usado en store.j
+export const uiSlice = createSlice({ // usado en store.js
 
     name: 'ui',
 

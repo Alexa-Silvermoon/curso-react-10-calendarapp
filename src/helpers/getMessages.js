@@ -20,7 +20,7 @@ export const getMessagesES = () => { // usado en CalendarPage.jsx
         showMore: total => `+ Ver más (${total})`
 
     };
-
+    
 }
 
 // Configuraciones adicionales al calendario https://www.udemy.com/course/react-cero-experto/learn/lecture/20344297#questions

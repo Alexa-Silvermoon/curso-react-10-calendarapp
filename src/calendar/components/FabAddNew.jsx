@@ -18,7 +18,7 @@ export const FabAddNew = () => { // usado en CalendarPage.jsx
             bgColor: '#fafafa',
             user: {
                 _id: '123',
-                name: 'Alexander'
+                name: 'Fernando'
             }
 
         });
@@ -30,14 +30,10 @@ export const FabAddNew = () => { // usado en CalendarPage.jsx
   return (
 
     <button
-
         className="btn btn-primary fab"
         onClick={ handleClickNew }
-
     >
-
         <i className="fas fa-plus"></i> {/* simbolo + */}
-
     </button>
 
   )

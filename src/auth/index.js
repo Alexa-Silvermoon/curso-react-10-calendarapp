@@ -1,1 +1,1 @@
-export * from './pages/LoginPage'; //usado en AppRouter.jsx
+export * from './pages/LoginPage';

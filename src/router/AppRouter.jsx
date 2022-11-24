@@ -16,15 +16,11 @@ export const AppRouter = () => { // usado en CalendarApp.jsx
         checkAuthToken(); // verificar token antes de iniciar sesion
 
     }, [])
-    
+
     if ( status === 'checking' ) {
-
         return (
-
             <h3>Cargando...</h3>
-
         )
-
     }
 
     return (
@@ -42,7 +38,7 @@ export const AppRouter = () => { // usado en CalendarApp.jsx
                     : // esto extraño se hace para proteger la visibilidad de las rutas
                     (
                         <>
-                            <Route path="/" element={ <CalendarPage /> } /> {/* cualquier ruta que no sea /auth/* va a mostrar el CalendarPage */}
+                            <Route path="/" element={ <CalendarPage /> } />  {/* cualquier ruta que no sea /auth/* va a mostrar el CalendarPage */}
                             <Route path="/*" element={ <Navigate to="/" /> } /> {/*  si usuario autenticado esta en cualquier otra ruta no existente, dirigirlo al / */}
                         </>
                     )
@@ -51,7 +47,6 @@ export const AppRouter = () => { // usado en CalendarApp.jsx
         </Routes>
 
     )
-
 }
 
 // Rutas de la aplicacion https://www.udemy.com/course/react-cero-experto/learn/lecture/32496622#questions

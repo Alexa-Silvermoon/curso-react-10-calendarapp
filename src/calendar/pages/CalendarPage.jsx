@@ -19,10 +19,10 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
   const eventStyleGetter = ( event, start, end, isSelected ) => {
 
     const isMyEvent = ( user.uid === event.user._id ) || ( user.uid === event.user.uid );
-    // console.log( { event, start, end, isSelected } )
 
     const style = { // estilo del evento
 
+      // si usuario es quien dice ser, el color del evento sera azul, pero los otros usuarios lo veran gris
       backgroundColor: isMyEvent ? '#347CF7' : '#465660',
       borderRadius: '0px',
       opacity: 0.8,
@@ -54,8 +54,6 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
 
   const onViewChanged = ( event ) => {
 
-    // console.log( { viewChanged: event } );
-
     localStorage.setItem('lastView', event ); // guarda la ultima vista que se tuvo, toma el event y lo guarda como lastView
     setLastView( event ) // cargar el ultimo view guardado
 
@@ -66,8 +64,9 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
     startLoadingEvents()
 
   }, [])
-  
+
   return (
+
     <>
       <Navbar />
 
@@ -97,7 +96,9 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
       <FabDelete />
 
     </>
+
   )
+
 }
 
 // https://www.npmjs.com/package/react-big-calendar
@@ -110,3 +111,4 @@ export const CalendarPage = () => { // usado en AppRouter.jsx
 // CalendarSlice.js y useCalendarSlice: https://www.udemy.com/course/react-cero-experto/learn/lecture/32499088?start=45#questions
 // cargar un evento en un modal: https://www.udemy.com/course/react-cero-experto/learn/lecture/32499164?start=240#questions
 // preparando la creacion de un nuevo evento: https://www.udemy.com/course/react-cero-experto/learn/lecture/32499238#questions
+// cambiar el color de los eventos segun el usuario: https://www.udemy.com/course/react-cero-experto/learn/lecture/32548610#questions

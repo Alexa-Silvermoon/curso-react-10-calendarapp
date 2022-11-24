@@ -7,10 +7,13 @@ export const Navbar = () => { // usado en CalendarPage.jsx
   return (
 
     <div className="navbar navbar-dark bg-dark mb-4 px-4">
+
         <span className="navbar-brand">
+
             <i className="fas fa-calendar-alt"></i>
-            &nbsp; {/* separacion entre el loguito de calendario y el texto Alexander */}
+            &nbsp; {/* separacion entre el loguito de calendario y el texto del nombre del usuario */}
             { user.name }
+
         </span>
 
         {/* boton de salir: */}
@@ -22,9 +25,11 @@ export const Navbar = () => { // usado en CalendarPage.jsx
             &nbsp;
             <span>Salir</span>
         </button>
+
     </div>
 
   )
+
 }
 
 // loguito del calendar usado en index.html es el cdnjs

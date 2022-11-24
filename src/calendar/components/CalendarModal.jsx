@@ -27,6 +27,7 @@ const customStyles = {
       transform: 'translate(-50%, -50%)',
 
     },
+
 };
 
 Modal.setAppElement('#root'); // mismo root de index.html
@@ -37,8 +38,7 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
     const { activeEvent, startSavingEvent } = useCalendarStore();
 
     // el modal es un cuadro de texto que contiene algun tipo de mensaje, trae propiedades css desde styles.css
-   // const [isOpen, setIsOpen] = useState( true ); // modal por defecto estara abierto
-
+    // const [isOpen, setIsOpen] = useState( true ); // modal por defecto estara abierto
     const [ formSubmitted, setFormSubmitted ] = useState(false);
 
     const [formValues, setFormValues] = useState({
@@ -55,7 +55,6 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
         if ( !formSubmitted ) return ''; // si formSubmitted NO se ha disparado para postearse, regresar un string vacio en clase
 
         return ( formValues.title.length > 0 ) // si formulario ya se disparo pero longitud de titulo...
-
             ? '' // si es mayor a 0, lo deje vacio para que no muestre el verde
             : 'is-invalid'; // si NO es mayor a 0, se pone en rojo el input
 
@@ -70,8 +69,6 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
       }    
       
     }, [ activeEvent ])
-    
-
 
     const onInputChanged = ({ target }) => { // tiene en cuenta los cambios en los input, ya que sino el valor seria de solo lectura
 
@@ -81,6 +78,7 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
             [target.name]: target.value
 
         })
+
     }
 
     const onDateChanged = ( event, changing ) => { // tiene en cuenta los cambios en DatePicker, ya que sino la fecha seria de solo lectura
@@ -91,6 +89,7 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
             [changing]: event
 
         })
+
     }
 
     const onCloseModal = () => {
@@ -118,13 +117,12 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
         
         if ( formValues.title.length <= 0 ) return;
         
-        console.log(formValues);
+        // console.log(formValues); // imprime el evento ya sea que: se creo, edito, actualizo o elimino
 
         // TODO: 
         await startSavingEvent( formValues ); // agregar una nueva nota
         closeDateModal(); // cierra el modal
         setFormSubmitted(false); // despues de guardada el evento, se regresa a su estao original
-
     }
 
   return (
@@ -157,14 +155,14 @@ export const CalendarModal = () => { // usado en CalendarPage.jsx
             <div className="form-group mb-2">
                 <label>Fecha y hora fin</label>
                 <DatePicker 
-                    minDate={ formValues.start } /* no permite seleccionar una fecha anterior a la del inicio */
+                    minDate={ formValues.start }
                     selected={ formValues.end }
                     onChange={ (event) => onDateChanged(event, 'end') }
-                    className="form-control" /* estira el input de DatePicker */
-                    dateFormat="Pp" /* muestra la hora, minutos y AM o PMs */
-                    showTimeSelect /* permite modificar la hora */
-                    locale="es" /* pone en español el DatePicker */
-                    timeCaption="Hora" /* pone en español la hora del DatePicker */
+                    className="form-control"
+                    dateFormat="Pp"
+                    showTimeSelect
+                    locale="es"
+                    timeCaption="Hora"
                 />
             </div>
 

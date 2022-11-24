@@ -29,16 +29,13 @@ export const LoginPage = () => { // usado en AppRouter.jsx
     const loginSubmit = ( event ) => {
 
         event.preventDefault(); // evitar que el navegador se recargue
-        // startLogin({ email: loginEmail, password: loginPassword });
-
-        // es correo ya que asi esta en postman y asi se guarda en mongo
-        startLogin({ correo: loginEmail, password: loginPassword });
+        startLogin({ email: loginEmail, password: loginPassword });
 
     }
 
     const registerSubmit = ( event ) => {
 
-        event.preventDefault();
+        event.preventDefault(); // evitar que el navegador se recargue
 
         if ( registerPassword !== registerPassword2 ) {
 
@@ -47,21 +44,19 @@ export const LoginPage = () => { // usado en AppRouter.jsx
 
         }
 
-        // startRegister({ name: registerName, email: registerEmail, password: registerPassword });
-        // Estos nombres van español porque asi estan en mongo
-        startRegister({ nombre: registerName, correo: registerEmail, password: registerPassword });
+        startRegister({ name: registerName, email: registerEmail, password: registerPassword });
 
     }
 
     useEffect(() => {
 
         // error en la autenticacion del login
-        if ( errorMessage !== undefined ) {
+      if ( errorMessage !== undefined ) {
 
-            // mensaje , dependencia, icono
-            Swal.fire('Error en la autenticación', errorMessage, 'error');
+        // mensaje , dependencia, icono
+        Swal.fire('Error en la autenticación', errorMessage, 'error');
 
-        }    
+      }    
 
     }, [errorMessage])
 
@@ -166,4 +161,3 @@ export const LoginPage = () => { // usado en AppRouter.jsx
 // https://www.udemy.com/course/react-cero-experto/learn/lecture/20420505#questions
 
 // mantener el estado de la autenticacion: https://www.udemy.com/course/react-cero-experto/learn/lecture/20421025?start=15#questions
-

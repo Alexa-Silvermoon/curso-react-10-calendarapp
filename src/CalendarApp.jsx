@@ -4,12 +4,15 @@ import { AppRouter } from './router';
 import { store } from './store';
 
 export const CalendarApp = () => { // usado en main.jsx
+
   return (
+
     <Provider store={ store }>
       <BrowserRouter>
         <AppRouter />
       </BrowserRouter>
     </Provider>
+
   )
 }
 

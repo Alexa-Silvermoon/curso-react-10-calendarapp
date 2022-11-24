@@ -32,6 +32,7 @@ export const useUiStore = () => { // usado en CalendarModal.jsx, CalendarPage.js
     }
 
     return {
+
         //* Propiedades
         isDateModalOpen,
 

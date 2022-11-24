@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { uiSlice, calendarSlice, authSlice } from './';
 
-export const store = configureStore({ // usado en CalendarApp.jsx
+export const store = configureStore({// usado en CalendarApp.jsx
 
     reducer: {
 
@@ -15,8 +15,8 @@ export const store = configureStore({ // usado en CalendarApp.jsx
         serializableCheck: false
 
     })
-    
-});
+
+})
 
 // instalacion y configuracion de reduc: https://www.udemy.com/course/react-cero-experto/learn/lecture/20348599#questions
 // Redux serializableCheck: https://www.udemy.com/course/react-cero-experto/learn/lecture/32499772#questions

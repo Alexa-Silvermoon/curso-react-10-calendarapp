@@ -4,7 +4,8 @@ import { calendarApi } from '../api';
 import { convertEventsToDateEvents } from '../helpers';
 import { onAddNewEvent, onDeleteEvent, onLoadEvents, onSetActiveEvent, onUpdateEvent } from '../store';
 
-export const useCalendarStore = () => { // usadon en CalendarPage.jsx, FabAddNew.jsx
+
+export const useCalendarStore = () => {// usadon en CalendarPage.jsx, FabAddNew.jsx
   
     const dispatch = useDispatch();
     const { events, activeEvent } = useSelector( state => state.calendar ); // apunta a CalendarSlice.js
@@ -47,6 +48,7 @@ export const useCalendarStore = () => { // usadon en CalendarPage.jsx, FabAddNew
     const startDeletingEvent = async() => { // usado en FabDelte.jsx
 
         // Todo: Llegar al backend
+
         try {
 
             await calendarApi.delete(`/events/${ activeEvent.id }` );
@@ -69,23 +71,25 @@ export const useCalendarStore = () => { // usadon en CalendarPage.jsx, FabAddNew
             const events = convertEventsToDateEvents( data.eventos );
             dispatch( onLoadEvents( events ) );
 
-
         } catch (error) {
 
           console.log('Error cargando eventos');
           console.log(error)
 
         }
+
     }
 
     return {
+
         //* Propiedades
         activeEvent,
         events,
 
         // desaparece el boton de borrar mientras se esta creando un nuevo evento
         // hasEventSelected: !!activeEvent,
-        hasEventSelected: !!activeEvent?._id, // si es null regresa false, si tiene un objeto regresa true
+        // hasEventSelected: !!activeEvent, // si es null regresa false, si tiene un objeto regresa true
+        hasEventSelected: !!activeEvent,
 
         //* Métodos
         setActiveEvent,
@@ -101,3 +105,5 @@ export const useCalendarStore = () => { // usadon en CalendarPage.jsx, FabAddNew
 // añadir un nuevo evento: https://www.udemy.com/course/react-cero-experto/learn/lecture/20360111#questions
 // editar el evento activo: https://www.udemy.com/course/react-cero-experto/learn/lecture/20361175#questions
 // eliminar evento: https://www.udemy.com/course/react-cero-experto/learn/lecture/20361185#questions
+// actualizar el evento https://www.udemy.com/course/react-cero-experto/learn/lecture/20457477#questions
+// eliminar evento propio pero no ajeno: https://www.udemy.com/course/react-cero-experto/learn/lecture/20457479#questions

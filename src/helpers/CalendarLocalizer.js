@@ -4,7 +4,6 @@ import esES from 'date-fns/locale/es';
 
 const locales = { // soporte multi idiomas
 
-  //   'en-US': enUS,
   'es': esES, /* poner en español mes año */
 
 }
