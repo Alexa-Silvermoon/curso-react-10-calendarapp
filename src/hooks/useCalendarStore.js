@@ -90,6 +90,7 @@ export const useCalendarStore = () => {// usadon en CalendarPage.jsx, FabAddNew.
         // hasEventSelected: !!activeEvent,
         // hasEventSelected: !!activeEvent, // si es null regresa false, si tiene un objeto regresa true
         hasEventSelected: !!activeEvent,
+        // hasEventSelected: !!activeEvent?.id, // NO FUNCIONA quitan el boton de la basura cuando no hay notas activas seleccionadas
 
         //* Métodos
         setActiveEvent,
